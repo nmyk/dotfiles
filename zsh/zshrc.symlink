@@ -1,11 +1,10 @@
 export PATH=$PATH:/usr/local/git/bin:/usr/local/bin
-export PIP_REQUIRE_VIRTUALENV=true
 
 if [[ -a ~/.local.zshrc ]]; then
 	source ~/.local.zshrc
 fi
 
-alias venv-rebuild="rm -rf venv && python3.6 -m venv venv && source venv/bin/activate && cp ~/.activate_this.py venv/bin/activate_this.py && pip install -U pip && pip install -r requirements.txt --process-dependency-links && pip install ipython pytest && export PYTHONPATH=$(pwd)"
+alias venv-rebuild="rm -rf venv && python3.6 -m venv venv && source venv/bin/activate && cp ~/.activate_this.py venv/bin/activate_this.py && pip install -U pip && pip install -r requirements.txt && pip install ipython pytest && export PYTHONPATH=$(pwd)"
 alias venv-activate="source venv/bin/activate"
 alias ipython="ipython --TerminalInteractiveShell.editing_mode=vi"
 
@@ -37,9 +36,8 @@ prompt_directory() {
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 setopt PROMPT_SUBST
-source ~/.zsh-git-prompt/zshrc.sh
 PROMPT='%F{magenta}%n@%m%f%F{green} $(prompt_directory) %f'$'\n''%F{yellow}❯❯❯%f '
-RPROMPT='%F{cyan}$(venv_display)%f$(venv_bar)$(git_super_status)'
+RPROMPT='%F{cyan}$(venv_display)%f'
 
 if [ -n "$VIRTUAL_ENV" ]; then
   . "$VIRTUAL_ENV/bin/activate"
@@ -47,6 +45,7 @@ fi
 
 alias cd='cd1'
 alias ls='ls -FG'
+alias la='ls -lah'
 alias vi='/usr/local/bin/vim'
 alias tmux="tmux -2"
 
@@ -69,7 +68,7 @@ gb () {
 git checkout -b $1
 }
 
-alias python='python3'
+alias python='python3.6'
 
 #Vi mode
 bindkey -v

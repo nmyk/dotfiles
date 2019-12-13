@@ -14,7 +14,7 @@ Plugin 'gmarik/Vundle.vim'
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
 Plugin 'tmhedberg/SimpylFold'
 Bundle 'Valloric/YouCompleteMe'
-Plugin 'scrooloose/syntastic'
+" Plugin 'scrooloose/syntastic'
 Plugin 'nvie/vim-flake8'
 Plugin 'jnurmine/Zenburn'
 Plugin 'scrooloose/nerdtree'
@@ -83,6 +83,10 @@ au BufNewFile,BufRead *.py
     \ let g:slime_paste_file = "$HOME/.slime_paste" |
     \ let g:slime_default_config = {"socket_name": split($TMUX, ",")[0], "target_pane": ":0.1"}
 
+" SQL
+au BufNewFile,BufRead *.sql
+    \ set expandtab
+
 " Plaintext
 au BufNewFile,BufRead *.txt,*.md
     \ Goyo |
@@ -96,7 +100,7 @@ au BufNewFile,BufRead *.txt,*.md
 
 " catch extraneous whitespace
 highlight BadWhitespace ctermbg=red guibg=darkred
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.h,*.hs match BadWhitespace /\s\+$/
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h,*.hs,*.sql match BadWhitespace /\s\+$/
 
 scriptencoding=utf-8
 set encoding=utf-8
@@ -128,14 +132,6 @@ imap jk <Esc>
 
 "default unfolded
 set foldlevel=99
-
-"color scheme stuff
-"if has('gui_running')
-	"set background=dark
-	"colorscheme solarized
-"else
-	"colorscheme zenburn
-"endif
 
 "ignore files in NERDTree
 let NERDTreeIgnore=['\.pyc$', '\~$']
@@ -203,7 +199,7 @@ set scrolloff=20
 
 set term=screen-256color
 
-" use system clipboard
+" yank to clipboard
 set clipboard=unnamed
 
 " highlight as you search
